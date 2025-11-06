@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ServiceRegistry
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 8081
