@@ -8,7 +8,13 @@ node {
          url: 'https://github.com/IslamHamada/petshop_serviceregistry.git']]])
     }
     stage('Build and Push Image') {
-        sh("${mvnCMD} clean install jib:build")
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub',
+            usernameVariable: 'DOCKER_USERNAME',
+            passwordVariable: 'DOCKER_PASSWORD')]) {
+
+            sh("${mvnCMD} -Ddocker.username=${DOCKER_USERNAME} -Ddocker.password=${DOCKER_PASSWORD} clean install jib:build")
+        }
     }
     stage('Deploy') {
         step([$class: 'KubernetesEngineBuilder',
