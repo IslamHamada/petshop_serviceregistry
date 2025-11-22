@@ -77,6 +77,10 @@
                 <configuration>
                     <to>
                         <image>${dockerhub-repo}:${project.artifactId}</image>
+                        <auth>
+                            <username>${docker.username}</username>
+                            <password>${docker.password}</password>
+                        </auth>
                     </to>
                 </configuration>
             </plugin>
